@@ -1,0 +1,15 @@
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+
+float GetT(float v, float h){
+    // more code needed here
+    float t;
+    float x;
+    x = 2.0*h/9.8;
+    t=sqrt(x);
+    t*=v;
+    return v;
+    return t;
+}
