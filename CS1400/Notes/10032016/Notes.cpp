@@ -29,7 +29,7 @@ int main (){
   int set=61;
   int current=47;
     while (c!='q'){
-      printScreen(set,current);
+      printScreen(45,60);
       cout << "[s]et desired temp, [w]ait, or [q]uit" << endl;
       cin >> c;
       if (c == 'q'){
