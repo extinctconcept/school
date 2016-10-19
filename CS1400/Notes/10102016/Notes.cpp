@@ -16,16 +16,17 @@ struct color{
 color add(color a, color b){
   color c;
   c.r=(a.r+b.r)%MAXINTESITY;
-  c.r=(a.r+b.g)%MAXINTESITY;
-  c.r=(a.r+b.b)%MAXINTESITY;
+  c.g=(a.g+b.g)%MAXINTESITY;
+  c.b=(a.b+b.b)%MAXINTESITY;
 
 }
 
 int main(){
   color myColor;
   ofstream fout;
-  fout.open("red.ppm");
-
+  fout.open("color.ppm");
+  color redincrement;
+  color blueincrement;
   myColor.r = 255;
   myColor.g = 0;
   myColor.b = 0;
@@ -44,6 +45,7 @@ int main(){
       fout << myColor.g << " ";
       fout << myColor.b << " ";
     }
+    fout << endl;
   }
   return 0;
 }
