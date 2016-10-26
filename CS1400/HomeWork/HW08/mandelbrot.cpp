@@ -109,70 +109,90 @@ int main()
   output << "P3\n";
   output << m.width <<" "<< m.height << "\n255\n";
   for (int i = 0; i < m.height; ++i){
+      int redSmoosh = m.colorOne.red;
+      int greenSmoosh = m.colorOne.green;
+      int blueSmoosh = m.colorOne.blue;
+      double redDiff;
+      double greenDiff;
+      double blueDiff;
     for (int j = 0; j < m.width; ++j){
-      //find xy location for pixel
+      //  find xy location for pixel
       double x;
       double y;
       double xincrement;
       double yincrement;
-      xincrement = (m.xComplexMax-m.xComplexMin) / m.width;
-      yincrement = (m.yComplexMax-m.yComplexMin) / m.height;
+      xincrement = (m.xComplexMax - m.xComplexMin) / m.width;
+      yincrement = (m.yComplexMax - m.yComplexMin) / m.height;
       x = m.xComplexMin + j * xincrement;
-      y = m.yComplexMax + i * yincrement;
-      cout << y << " ";
-      //
-      // cout << y << endl;
-    }
-  }
+      y = m.yComplexMin + i * yincrement;
+
       Complex c;
       Complex z;
-      int maxIterations = m.maxIterations;
-      int iteration = 0;
-      // c.real = pX;
-      // c.imag = pX;
-      // z.real = pY;
-      // z.imag = pY;
+      double maxIterations = m.maxIterations;
+      double iteration;
 
-      while(iteration < maxIterations && magnitudeSquared(z) < 4){
-      z=z*z+c;
-      iteration++;
+      c.real = x;
+      c.imag = y;
+      z.real = 0;
+      z.imag = 0;
+
+      iteration = 0;
+
+      while (iteration < maxIterations && magnitudeSquared(z) < 4){
+        z = z * z + c;
+        iteration++;
+        // cout << iteration << " ";
+      }
+      // find color based off iteration
+      // for example if value iteration = max iteration then color pixel right color.
+
+      if (m.colorOne.red > m.colorTwo.red){
+        redDiff = m.colorOne.red - m.colorTwo.red;
+        redDiff = redDiff/static_cast<double>(m.maxIterations);
+        redDiff *= static_cast<double>(iteration);
+        redSmoosh = m.colorOne.red - redDiff;
+      } else if (m.colorOne.red < m.colorTwo.red){
+        redDiff = m.colorTwo.red - m.colorOne.red;
+        redDiff = redDiff/static_cast<double>(m.maxIterations);
+        redDiff *= static_cast<double>(iteration);
+        redSmoosh = redDiff  + m.colorOne.red;
+      } else if (m.colorOne.red == m.colorTwo.red){
+        redSmoosh = m.colorOne.red;
+      }
+      if (m.colorOne.green > m.colorTwo.green){
+        greenDiff = m.colorOne.green - m.colorTwo.green;
+        greenDiff = greenDiff/static_cast<double>(m.maxIterations);
+        greenDiff *= static_cast<double>(iteration);
+        greenSmoosh = m.colorOne.green - greenDiff;
+      } else if (m.colorOne.green < m.colorTwo.green){
+        greenDiff = m.colorTwo.green - m.colorOne.green;
+        greenDiff = greenDiff/static_cast<double>(m.maxIterations);
+        greenDiff *=  static_cast<double>(iteration);
+        greenSmoosh = greenDiff + m.colorOne.green;
+      } else if (m.colorOne.green == m.colorTwo.green){
+        greenSmoosh = m.colorOne.green;
+      }
+      if (m.colorOne.blue > m.colorTwo .blue){
+        blueDiff = m.colorOne.blue - m.colorTwo.blue;
+        blueDiff = blueDiff/static_cast<double>(m.maxIterations);
+        blueDiff *= static_cast<double>(iteration);
+        blueSmoosh = m.colorOne.blue - blueDiff;
+      } else if (m.colorOne.blue < m.colorTwo.blue){
+        blueDiff = m.colorTwo.blue - m.colorOne.blue;
+        blueDiff = blueDiff/static_cast<double>(m.maxIterations);
+        blueDiff *= static_cast<double>(iteration);
+        blueSmoosh = blueDiff + m.colorOne.blue;
+      } else if (m.colorOne.blue == m.colorTwo.blue){
+        blueSmoosh = m.colorOne.blue;
+      }
+      // cout << redSmoosh << " ";
+      // cout << greenSmoosh << " ";
+      // cout << blueSmoosh << " " << iteration << " ";
+
+      output << static_cast<int>(redSmoosh) << " ";
+      output << static_cast<int>(greenSmoosh) << " ";
+      output << static_cast<int>(blueSmoosh) << " ";
     }
-      // cout << iteration << " ";
-
-
-
-
+  }
     return 0;
 }
-
-
-
-
-
-
-
-
-// float getx(int j, point p1, point p2){
-//     float x;
-//     float increment;
-//     increment=(p2.x-p1.x)/COLS;
-//     x=p1.x+j*increment;
-//     return x;
-// }
-
-// float gety(int i, point p1, point p2){
-//     float y;
-//     float increment;
-//     increment=(p2.y-p1.y)/ROWS;
-//     y=p1.y+i*increment;
-//     return y;
-// }
-
-// point getPoint(int i, int j, point p1, point p2){
-//     point p;
-//     p.x=getx(j,p1,p2);
-//     p.y=gety(i,p1,p2);
-//     return p;
-// }
-
-
