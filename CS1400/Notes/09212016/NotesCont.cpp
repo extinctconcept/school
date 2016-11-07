@@ -10,7 +10,6 @@ void printSail(int n){
         int j = 0;
         while(j<=i){
             cout<<"*";
-            i++;
             j++;
         }
         cout << endl;

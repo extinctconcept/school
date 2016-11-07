@@ -149,25 +149,25 @@ int main()
       if (m.colorOne.red > m.colorTwo.red){
         redDiff = m.colorOne.red - m.colorTwo.red;
         redDiff = redDiff/static_cast<double>(m.maxIterations);
-        redDiff *= static_cast<double>(iteration);
+        redDiff *= iteration;
         redSmoosh = m.colorOne.red - redDiff;
       } else if (m.colorOne.red < m.colorTwo.red){
         redDiff = m.colorTwo.red - m.colorOne.red;
         redDiff = redDiff/static_cast<double>(m.maxIterations);
-        redDiff *= static_cast<double>(iteration);
-        redSmoosh = redDiff  + m.colorOne.red;
+        redDiff *= iteration;
+        redSmoosh = redDiff+1 + m.colorOne.red;
       } else if (m.colorOne.red == m.colorTwo.red){
         redSmoosh = m.colorOne.red;
       }
       if (m.colorOne.green > m.colorTwo.green){
         greenDiff = m.colorOne.green - m.colorTwo.green;
         greenDiff = greenDiff/static_cast<double>(m.maxIterations);
-        greenDiff *= static_cast<double>(iteration);
+        greenDiff *= iteration;
         greenSmoosh = m.colorOne.green - greenDiff;
       } else if (m.colorOne.green < m.colorTwo.green){
         greenDiff = m.colorTwo.green - m.colorOne.green;
         greenDiff = greenDiff/static_cast<double>(m.maxIterations);
-        greenDiff *=  static_cast<double>(iteration);
+        greenDiff *= iteration;
         greenSmoosh = greenDiff + m.colorOne.green;
       } else if (m.colorOne.green == m.colorTwo.green){
         greenSmoosh = m.colorOne.green;
@@ -175,12 +175,12 @@ int main()
       if (m.colorOne.blue > m.colorTwo .blue){
         blueDiff = m.colorOne.blue - m.colorTwo.blue;
         blueDiff = blueDiff/static_cast<double>(m.maxIterations);
-        blueDiff *= static_cast<double>(iteration);
+        blueDiff *= iteration;
         blueSmoosh = m.colorOne.blue - blueDiff;
       } else if (m.colorOne.blue < m.colorTwo.blue){
         blueDiff = m.colorTwo.blue - m.colorOne.blue;
         blueDiff = blueDiff/static_cast<double>(m.maxIterations);
-        blueDiff *= static_cast<double>(iteration);
+        blueDiff *= iteration;
         blueSmoosh = blueDiff + m.colorOne.blue;
       } else if (m.colorOne.blue == m.colorTwo.blue){
         blueSmoosh = m.colorOne.blue;
